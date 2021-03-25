@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {ReactComponent as Logo} from '../../assets/crown.svg';  //special syntax in React for importing SVG
 import {auth} from '../../firebase/firebase.utils';
+import {connect} from 'react-redux';
 
 import './header.style.scss';
 
@@ -20,6 +21,12 @@ const Header = ({currentUser}) => (
             }
         </div>
     </div>
-)
+);
 
-export default Header;
+//state is the root-reducer
+const mapStateToProps = state => ({
+    //it's the property that we pass in to 'Header'
+    currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps)(Header);
